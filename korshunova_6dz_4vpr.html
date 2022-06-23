@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        "use strict"
+        let vvod = +prompt("Введите способ ввода, где:\n" +
+            "1 - ввести массив самостоятельно;\n" +
+            "2 - использовать авторский массив.")
+        let mass = new Array();
+        let n;
+        if (vvod == 1) {
+            let N = +prompt("Введите количество элементов массива:");
+            if (isNaN(N)) {
+                alert("Вы ввели не число, попробуйте еще раз!");
+            }
+            else {
+                if (N % 1 == 0 && N > 0) {
+                    for (let i = 0; i < N; i++) {
+                        n = i + 1;
+                        mass[i] = +prompt("Введите " + n + " элемент массива");
+
+                        if (isNaN(mass[i])) {
+                            alert("Вы ввели не число!");
+                            i--;
+                        }
+                    }
+                }
+                else {
+                    alert("Количество элементов массива должно представлять собой целое положительное значение. Попробуйте еще раз!")
+                }
+            }
+        }
+        else if (vvod == 2) {
+            mass = [-20, 17, -15, 9, -16, 2, 13, 8, 7, 4, 14, -16];//17 14 13 9 8 7 4 2
+        }
+        else {
+            alert("Вы ввели не предложенные значения, попробуйте еще раз!")
+        }
+        if (mass[0] != null) {
+            let X, right, left, m;
+            for (let i = 1; i < mass.length; i++) {
+                X = mass[i];
+                left = 0;
+                right = i - 1;
+                while (left <= right) {
+                    m = ((left + right) / 2);
+                    m = Math.ceil(m);
+                    if (X > mass[m]) {
+                        right = m - 1;
+                    }
+                    else {
+                        left = m + 1;
+                    }
+                }
+                for (let j = i - 1; j >= left; j--) {
+                    mass[j + 1] = mass[j];
+                }
+                mass[left] = X;
+            }
+            for (let i = 0; i < mass.length; i++) {
+                if (mass[i] > 0) {
+                    console.log(mass[i]);
+                }
+                else {
+                    break;
+                }
+            }
+            document.write("Разнообразия ради вывод в консоль :)")
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

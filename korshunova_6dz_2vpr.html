@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        "use strict"
+        let vvod = +prompt("Введите способ ввода, где:\n" +
+            "1 - ввести массив самостоятельно;\n" +
+            "2 - использовать авторский массив.")
+        let mass = new Array();
+        let n;
+        if (vvod == 1) {
+            let N = +prompt("Введите длину последовательности натуральных чисел:");
+            if (isNaN(N)) {
+                alert("Вы ввели не число, попробуйте еще раз!");
+            }
+            else {
+                if (N % 1 == 0 && N > 0) {
+                    for (let i = 0; i < N; i++) {
+                        n = i + 1;
+                        mass[i] = +prompt("Введите " + n + " элемент последовательности натуральных чисел");
+                        if (mass[i] % 1 != 0 || mass[i] <=0) {
+                            alert("Вы ввели не натуральное число!");
+                            i--;
+                        }
+                    }
+                }
+                else {
+                    alert("Длина последовательности должна представлять собой целое положительное значение. Попробуйте еще раз!")
+                }
+            }
+        }
+        else if (vvod == 2) {
+            mass = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        }
+        else {
+            alert("Вы ввели не предложенные значения, попробуйте еще раз!")
+        }
+        if (mass[0] != null) {
+            let newMass = new Array();
+            let j = 0;
+            for (let i = 0; i < mass.length; i++) {
+                if (mass[i] % 2 == 0) {
+                    newMass[j] = mass[i];
+                    j++;
+                }
+            }
+            if (j == 0) {
+                alert("В веденной последовательности натуральных чисел нет четных!");
+            }
+            else {
+                for (let i = 0; i < newMass.length; i++) {
+                    n = i + 1;
+                    alert(n + " элемент массива получившейся последовательности: " + newMass[i]);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        "use strict"
+        let vvod = +prompt("Введите способ ввода, где:\n" +
+            "1 - ввести массив самостоятельно;\n" +
+            "2 - использовать авторский массив.")
+        let mass = new Array();
+        let n;
+        if (vvod == 1) {
+            let N = +prompt("Введите длину числовой последовательности:");
+            if (isNaN(N)) {
+                alert("Вы ввели не число, попробуйте еще раз!");
+            }
+            else {
+                if (N % 1 == 0 && N > 0) {
+                    for (let i = 0; i < N; i++) {
+                        n = i + 1;
+                        mass[i] = +prompt("Введите " + n + " уникальный элемент числовой последовательности");
+                        if (isNaN(mass[i])) {
+                            alert("Вы ввели не число!");
+                            i--;
+                        }
+                        for (let j = 0; j < mass.length; j++) {
+                            if (mass[i] == mass[j] && i != j) {
+                                alert("Вы ввели не уникальное число!");
+                                i--;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else {
+                    alert("Длина последовательности должна представлять собой целое положительное значение. Попробуйте еще раз!")
+                }
+            }
+        }
+        else if (vvod == 2) {
+            mass = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        }
+        else {
+            alert("Вы ввели не предложенные значения, попробуйте еще раз!")
+        }
+        if (mass[0] != null) {
+            let indexMax=0;
+            let max = mass[0];
+            let indexMin=0;
+            let min = mass[0];
+            for (let i = 1; i < mass.length; i++) {
+                if (mass[i] > max) {
+                    max = mass[i];
+                    indexMax = i;
+                }
+                if (mass[i] < min) {
+                    min = mass[i];
+                    indexMin = i;
+                }
+            }
+            let a=0;
+            let b=0;
+            if (indexMax > indexMin) {
+                a = indexMax;
+                b = indexMin
+            }
+            else {
+                b = indexMax;
+                a = indexMin;
+            }
+            let n = 0;
+            let result = 1;
+            for (let i = b + 1; i < a; i++) {
+                n++;
+                result *= mass[i];
+            }
+            if (n == 0) {
+                result = 0;
+            }
+            alert("Количество элементов расположенных между максимальным и минимальным " + n);
+            alert("Произведение элементов расположенных между максимальным и минимальным " + result);
+
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
